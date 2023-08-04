@@ -1,24 +1,23 @@
 import { useSearchParams } from 'react-router-dom';
-import { getSearhedMovies } from 'components/API';
+import { getQuery } from 'components/API';
 import { useEffect, useState } from 'react';
-import { FilmList } from 'components/FilmList/FilmList';
+import { TrendList } from 'components/TrendList/TrendList';
 import { Notify } from 'notiflix';
 import { Loader } from 'components/Loader/Loader';
 
 const Movies = () => {
-  const [searchInput, setSearchInput] = useState('');
-  const [films, setFilms] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-
+  const [searchInput, setSearchInput] = useState('');
+  const [films, setFilms] = useState([]);
   useEffect(() => {
     const getFilms = async query => {
       try {
         setIsLoading(true);
-        const data = await getSearhedMovies(query);
+        const data = await getQuery(query);
         if (data.results.length === 0) {
-          return Notify.failure('There is no movies with this title');
+          return Notify.failure('No movies found, try something else!');
         }
         setFilms(data.results);
       } catch (error) {
@@ -38,7 +37,7 @@ const Movies = () => {
     event.preventDefault();
 
     if (!searchInput.trim()) {
-      return Notify.failure('Please, write something');
+      return Notify.failure('Input Required!');
     }
     setSearchParams({ query: searchInput.trim() });
     setSearchInput('');
@@ -54,9 +53,9 @@ const Movies = () => {
         />
         <button type="submit">Search</button>
       </form>
-      {films.length > 0 && <FilmList films={films} />}
+      {films.length > 0 && <TrendList films={films} />}
       {isLoading && <Loader />}
-      {error && <p>Oops.. Simesing went wrong</p>}
+      {error && <p>An Error Occurred! {error}</p>}
     </main>
   );
 };

@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getReviewsById } from 'components/API';
+import { getReviews } from 'components/API';
 import { Loader } from 'components/Loader/Loader';
 import { Notify } from 'notiflix';
-
-const Reviews = () => {
+import { ReviewList, ReviewBlock } from 'components/pages/MovieInfo/MovieStyles.styled';
+const MovieReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -14,11 +14,11 @@ const Reviews = () => {
     const getCurrentMovie = async () => {
       try {
         setIsLoading(true);
-        const response = await getReviewsById(id);
+        const response = await getReviews(id);
         setReviews(response.data.results);
         setIsLoading(false);
         if (response.data.results.length === 0) {
-          return Notify.failure('Oops.. There is no reviews');
+          return Notify.failure('No reviews found');
         }
       } catch (error) {
         setError(true);
@@ -33,25 +33,25 @@ const Reviews = () => {
   return (
     <>
       {isLoading && <Loader />}
-      {error && <p>Oops.. Simesing went wrong</p>}
+      {error && <p>An Error Occurred! {error}</p>}
       <>
         {reviews.length > 0 ? (
-          <ul>
+          <ReviewList>
             {reviews.map(review => {
               return (
-                <li key={review.id}>
-                  <h3>Athor: {review.author}</h3>
+                <ReviewBlock key={review.id}>
+                  <h3>Author: <br></br>{review.author}</h3>
                   <p>{review.content}</p>
-                </li>
+                </ReviewBlock>
               );
             })}
-          </ul>
+          </ReviewList>
         ) : (
-          <p>We don't have any reviews for this movie.</p>
+          <p>There are no reviews for this movie</p>
         )}
       </>
     </>
   );
 };
 
-export default Reviews;
+export default MovieReviews;

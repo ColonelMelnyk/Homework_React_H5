@@ -1,14 +1,13 @@
-import { getMoviesById } from 'components/API';
+import { getMovieId } from 'components/API';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { Outlet, useLocation, useParams, Link } from 'react-router-dom';
-import { Aditional, GoBack, MovieInfo } from './MovieDetails.styled';
+import { MovieDetail, BackButton, MoreInfo } from './MovieStyles.styled';
 import { Loader } from 'components/Loader/Loader';
 import { Notify } from 'notiflix';
 
-const MovieDetails = () => {
+const MovieInfo = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-
   const location = useLocation();
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
 
@@ -19,7 +18,7 @@ const MovieDetails = () => {
     const getCurrentMovie = async () => {
       try {
         setIsLoading(true);
-        const response = await getMoviesById(id);
+        const response = await getMovieId(id);
         if (response.data.length === null) {
           return Notify.failure('Oops.. Simesing went wrong');
         }
@@ -43,11 +42,11 @@ const MovieDetails = () => {
   return (
     <main>
       {isLoading && <Loader />}
-      {error && <p>Oops.. Simesing went wrong</p>}
-      <GoBack to={backLinkLocationRef.current}>← GO back</GoBack>
+      {error && <p>An Error Occurred! {error}</p>}
+      <BackButton to={backLinkLocationRef.current}>Go Back</BackButton>
       {currentMovie && (
         <>
-          <MovieInfo>
+          <MovieDetail>
             <img src={posterUrl} alt="error" />
             <div>
               <h2>{currentMovie.original_title}</h2>
@@ -55,20 +54,20 @@ const MovieDetails = () => {
               <h2>Overview</h2>
               <p>{currentMovie.overview ?? 'There is no review'}</p>
               <h2>Genres</h2>
-              <p>{currentMovie.genres.map(genre => genre.name).join(' ')}</p>
+              <p>{currentMovie.genres.map(genre => genre.name).join(', ')}</p>
             </div>
-          </MovieInfo>
-          <Aditional>
-            <h2>Aditional informations</h2>
+          </MovieDetail>
+          <MoreInfo>
+            <h2>Additional Information</h2>
             <ul>
               <li>
-                <Link to={'cast'}>cast</Link>
+                <Link to={'cast'}>Cast</Link>
               </li>
               <li>
-                <Link to={'reviews'}>reviews</Link>
+                <Link to={'reviews'}>Reviews</Link>
               </li>
             </ul>
-          </Aditional>
+          </MoreInfo>
         </>
       )}
       <Suspense fallback={<Loader />}>
@@ -78,4 +77,4 @@ const MovieDetails = () => {
   );
 };
 
-export default MovieDetails;
+export default MovieInfo;

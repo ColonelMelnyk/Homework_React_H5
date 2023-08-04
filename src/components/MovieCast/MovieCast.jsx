@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getCastById } from 'components/API';
+import { getCast } from 'components/API';
 import { Loader } from 'components/Loader/Loader';
 import { Notify } from 'notiflix';
 
-const Cast = () => {
+const MovieCast = () => {
   const [cast, setCast] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -14,9 +14,9 @@ const Cast = () => {
     const getCurrentMovie = async () => {
       try {
         setIsLoading(true);
-        const response = await getCastById(id);
+        const response = await getCast(id);
         if (response.data.cast.length === 0) {
-          return Notify.failure('Oops.. There is no casts');
+          return Notify.failure('No casts present!');
         }
         setCast(response.data.cast);
       } catch (error) {
@@ -32,7 +32,7 @@ const Cast = () => {
   return (
     <>
       {isLoading && <Loader />}
-      {error && <p>Oops.. Simesing went wrong</p>}
+      {error && <p>An Error Occurred! {error}</p>}
       {cast.length > 0 ? (
         <ul>
           {cast.map(actor => {
@@ -49,10 +49,10 @@ const Cast = () => {
           })}
         </ul>
       ) : (
-        <p>We don't have any casts for this movie.</p>
+        <p>No casts info present</p>
       )}
     </>
   );
 };
 
-export default Cast;
+export default MovieCast;

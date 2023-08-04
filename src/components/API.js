@@ -12,7 +12,7 @@ export const getMovies = async () => {
   return response.data;
 };
 
-export const getMoviesById = async id => {
+export const getMovieId = async id => {
   const response = await moviesApi.get(`movie/${id}`, {
     params: { api_key: KEY },
   });
@@ -20,7 +20,7 @@ export const getMoviesById = async id => {
   return response;
 };
 
-export const getCastById = async id => {
+export const getCast= async id => {
   const response = await moviesApi.get(`movie/${id}/credits`, {
     params: { api_key: KEY },
   });
@@ -28,7 +28,7 @@ export const getCastById = async id => {
   return response;
 };
 
-export const getReviewsById = async id => {
+export const getReviews = async id => {
   const response = await moviesApi.get(`movie/${id}/reviews`, {
     params: { api_key: KEY },
   });
@@ -36,7 +36,7 @@ export const getReviewsById = async id => {
   return response;
 };
 
-export const getSearhedMovies = async query => {
+export const getQuery = async query => {
   const response = await moviesApi.get('search/movie', {
     params: { api_key: KEY, query },
   });

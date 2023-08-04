@@ -1,25 +1,25 @@
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
-export const FilmList = ({ films }) => {
+import { TrendingList, TrendingMember } from 'components/pages/Home/Home.styled';
+export const TrendList = ({ films }) => {
   const location = useLocation();
 
   return (
-    <ul>
+    <TrendingList>
       {films.map(film => {
         return (
-          <li key={film.id}>
+          <TrendingMember key={film.id}>
             <Link to={`/movies/${film.id}`} state={{ from: location }}>
               {film.title || film.name || film.original_title}
             </Link>
-          </li>
+          </TrendingMember>
         );
       })}
-    </ul>
+    </TrendingList>
   );
 };
 
-FilmList.propTypes = {
+TrendList.propTypes = {
   films: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,

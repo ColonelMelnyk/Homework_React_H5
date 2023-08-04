@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { getMovies } from 'components/API';
-import { FilmList } from 'components/FilmList/FilmList';
+import { TrendList } from 'components/TrendList/TrendList';
 import { Loader } from 'components/Loader/Loader';
 import { Notify } from 'notiflix';
-
+import { TrendingTitle } from './Home.styled';
 const Home = () => {
   const [films, setFilms] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,10 +31,10 @@ const Home = () => {
 
   return (
     <main>
-      <h1>Trending today</h1>
-      {films.length > 0 && <FilmList films={films} />}
+      < TrendingTitle>Trending today</ TrendingTitle>
+      {films.length > 0 && <TrendList films={films} />}
       {isLoading && <Loader />}
-      {error && <p>Oops.. Simesing went wrong</p>}
+      {error && <p>An Error Occurred! {error}</p>}
     </main>
   );
 };
