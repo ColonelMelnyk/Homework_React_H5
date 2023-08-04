@@ -1,5 +1,12 @@
-import { InfinitySpin } from 'react-loader-spinner';
+import { RotatingTriangles } from 'react-loader-spinner';
 
 export const Loader = () => {
-  return <InfinitySpin width="200" color="#4fa94d" />;
+  return <RotatingTriangles
+  visible={true}
+  height="80"
+  width="80"
+  ariaLabel="rotating-triangels-loading"
+  wrapperStyle={{}}
+  wrapperClass="rotating-triangels-wrapper"
+/>;
 };
