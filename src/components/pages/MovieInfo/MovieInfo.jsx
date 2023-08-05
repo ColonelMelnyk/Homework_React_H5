@@ -4,13 +4,11 @@ import { Outlet, useLocation, useParams, Link } from 'react-router-dom';
 import { MovieDetail, BackButton, MoreInfo } from './MovieStyles.styled';
 import { Loader } from 'components/Loader/Loader';
 import { Notify } from 'notiflix';
-
 const MovieInfo = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const location = useLocation();
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
-
   const [currentMovie, setCurrentMovie] = useState(null);
   const { id } = useParams();
 

@@ -1,9 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { TrendingList, TrendingMember } from 'components/pages/Home/Home.styled';
 export const TrendList = ({ films }) => {
   const location = useLocation();
-
   return (
     <TrendingList>
       {films.map(film => {
@@ -17,15 +15,4 @@ export const TrendList = ({ films }) => {
       })}
     </TrendingList>
   );
-};
-
-TrendList.propTypes = {
-  films: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string,
-      name: PropTypes.string,
-      original_title: PropTypes.string,
-    })
-  ).isRequired,
 };

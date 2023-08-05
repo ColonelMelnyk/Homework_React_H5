@@ -4,13 +4,12 @@ import { useEffect, useState } from 'react';
 import { TrendList } from 'components/TrendList/TrendList';
 import { Notify } from 'notiflix';
 import { Loader } from 'components/Loader/Loader';
-
 const Movies = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
   const [searchInput, setSearchInput] = useState('');
   const [films, setFilms] = useState([]);
+  const [error, setError] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
   useEffect(() => {
     const getFilms = async query => {
       try {

@@ -8,7 +8,6 @@ const Home = () => {
   const [films, setFilms] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     setIsLoading(true);
     try {

@@ -3,13 +3,11 @@ import { useEffect, useState } from 'react';
 import { getCast } from 'components/API';
 import { Loader } from 'components/Loader/Loader';
 import { Notify } from 'notiflix';
-
 const MovieCast = () => {
-  const [cast, setCast] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [cast, setCast] = useState([]);
   const { id } = useParams(null);
-
   useEffect(() => {
     const getCurrentMovie = async () => {
       try {
@@ -36,12 +34,12 @@ const MovieCast = () => {
       {cast.length > 0 ? (
         <ul>
           {cast.map(actor => {
-            const actorsPhoto = actor.profile_path
+            const Photo = actor.profile_path
               ? `https://image.tmdb.org/t/p/w92${actor.profile_path}`
               : 'http://dummyimage.com/92x138';
             return (
               <li key={actor.id}>
-                <img src={actorsPhoto} alt="NonPhoto" />
+                <img src={Photo} alt="NonPhoto" />
                 <p>{actor.original_name}</p>
                 <p>Character: {actor.character}</p>
               </li>

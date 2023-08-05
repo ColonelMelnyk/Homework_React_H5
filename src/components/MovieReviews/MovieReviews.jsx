@@ -5,11 +5,10 @@ import { Loader } from 'components/Loader/Loader';
 import { Notify } from 'notiflix';
 import { ReviewList, ReviewBlock } from 'components/pages/MovieInfo/MovieStyles.styled';
 const MovieReviews = () => {
-  const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [reviews, setReviews] = useState([]);
   const { id } = useParams(null);
-
   useEffect(() => {
     const getCurrentMovie = async () => {
       try {
