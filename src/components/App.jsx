@@ -2,9 +2,9 @@ import { Routes, Route } from 'react-router-dom';
 import { lazy } from 'react';
 
 import { MainHeader } from './Header/Header';
-const Home = lazy(() => import('./pages/Home/Home'));
-const Movies = lazy(() => import('./pages/Movies/Movies'));
-const MovieInfo = lazy(() => import('./pages/MovieInfo/MovieInfo'));
+const Home = lazy(() => import('../pages/Home/Home'));
+const Movies = lazy(() => import('../pages/Movies/Movies'));
+const MovieInfo = lazy(() => import('../pages/MovieInfo/MovieInfo'));
 const MovieCast = lazy(() => import('./MovieCast/MovieCast'));
 const MovieReview = lazy(() => import('./MovieReviews/MovieReviews'));
 export const App = () => {

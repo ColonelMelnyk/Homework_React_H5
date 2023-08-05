@@ -1,4 +1,4 @@
-import { getMovieId } from 'components/API';
+import { getMovieId } from 'API';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { Outlet, useLocation, useParams, Link } from 'react-router-dom';
 import { MovieDetail, BackButton, MoreInfo } from './MovieStyles.styled';

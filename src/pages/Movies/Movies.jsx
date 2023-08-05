@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { getQuery } from 'components/API';
+import { getQuery } from 'API';
 import { useEffect, useState } from 'react';
 import { TrendList } from 'components/TrendList/TrendList';
 import { Notify } from 'notiflix';

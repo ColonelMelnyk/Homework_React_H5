@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getMovies } from 'components/API';
+import { getMovies } from 'API';
 import { TrendList } from 'components/TrendList/TrendList';
 import { Loader } from 'components/Loader/Loader';
 import { Notify } from 'notiflix';

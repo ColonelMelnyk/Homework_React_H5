@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getCast } from 'components/API';
+import { getCast } from 'API';
 import { Loader } from 'components/Loader/Loader';
 import { Notify } from 'notiflix';
 const MovieCast = () => {
@@ -36,7 +36,7 @@ const MovieCast = () => {
           {cast.map(actor => {
             const Photo = actor.profile_path
               ? `https://image.tmdb.org/t/p/w92${actor.profile_path}`
-              : 'http://dummyimage.com/92x138';
+              : 'https://dummyimage.com/92x138';
             return (
               <li key={actor.id}>
                 <img src={Photo} alt="NonPhoto" />

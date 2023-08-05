@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getReviews } from 'components/API';
+import { getReviews } from 'API';
 import { Loader } from 'components/Loader/Loader';
 import { Notify } from 'notiflix';
-import { ReviewList, ReviewBlock } from 'components/pages/MovieInfo/MovieStyles.styled';
+import { ReviewList, ReviewBlock } from 'pages/MovieInfo/MovieStyles.styled';
 const MovieReviews = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
